@@ -15,11 +15,37 @@ is a Narcissistic number.
 Error checking for text strings or other invalid inputs is not required, 
 only valid integers will be passed into the function. */
 
+
+//Submitted approach
 function narcissistic( value ) {
-  // 1. input to array
-  // 2. each element of array to the power of array.length
-  // 3. sum the array up -->output
-  // 4. check if input equals output
-  //		if yes: return true;
-  //		if no: return false;
+  const arr = value.toString().split("");
+  const arrLength = arr.length;
+  const exponent = (x) => {return Math.pow(x,arrLength);};
+  const sum = (acc, val) => {return acc + val;};
+
+  const result = arr.map(exponent).reduce(sum); 
+	if (result === value) {
+	  return true;
+	  } else {
+	  return false;
+	  };
 }
+
+
+//Approach with new exponential operator and ternary operator (Codewars does not accept this solution)
+function narcissistic( value ) {
+  const arr = value.toString().split("");
+  const arrLength = arr.length;
+  const exponent = (x) => {return x**arrLength;};
+  const sum = (acc, val) => {return acc + val;};
+
+  const result = arr.map(exponent).reduce(sum); 
+  result === value ? true : false;
+}
+
+
+//Tests
+narcissistic(153); //true
+narcissistic(1539); //false
+narcissistic(370); //true
+narcissistic(1); //true
